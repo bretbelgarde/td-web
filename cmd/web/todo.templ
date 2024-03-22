@@ -1,0 +1,28 @@
+package web
+
+templ TodoForm() {
+	@Base() {
+		<form hx-post="/todo" 
+			method="POST" 
+			hx-target="#todo-container" 
+			hx-swap="beforeend"
+			hx-on::after-request="if (event.detail.successful) this.reset()">
+			<fieldset>
+				<input id="task" name="task" type="text" placeholder="Task" required />
+				<input type="submit" value="Add"/>
+			</fieldset>
+		</form>
+
+		<h1>Todo List</h1>
+		<div id="todo-container"></div>
+	}
+}
+
+templ TodoPost(task string) {
+	<div class="">
+		<div>{ task }</div>
+		<div>
+			<a href="#" title="Delete Task">&times;</a>
+		</div>
+	</div>
+}
